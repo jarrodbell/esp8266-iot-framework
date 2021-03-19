@@ -23,7 +23,7 @@ if (Config.find(entry => entry.name === "language")) {
     loc = require("./lang/en.json");
 }
 
-let url = "http://192.168.1.54";
+let url = "http://192.168.0.145";
 if (process.env.NODE_ENV === "production") {url = window.location.origin;}
 
 if (process.env.NODE_ENV === "development") {require("preact/debug");}
@@ -69,9 +69,15 @@ function Root() {
     return <><GlobalStyle />
 
         <BrowserRouter>
-
-            <Header>
-                <h1><HeaderIcon style={{verticalAlign:"-0.1em"}} /> {projectName} {projectVersion}</h1>
+            <svg width="0" height="0">
+                <linearGradient id="fire-gradient" x1="100%" y1="100%" x2="0%" y2="0%">
+                    <stop stopColor="#EA4119" offset="0%" />
+                    <stop stopColor="#F76B1C" offset="20%" />
+                    <stop stopColor="#FAD961" offset="100%" />
+                </linearGradient>
+            </svg>
+            <Header>      
+                <h1><HeaderIcon style={{verticalAlign:"-0.1em", stroke: "url(#fire-gradient)", fill: "url(#fire-gradient)"}} /> {projectName} {projectVersion}</h1>
 
                 <Hamburger onClick={() => setMenu(!menu)} />
                 <Menu className={menu ? "" : "menuHidden"}>
